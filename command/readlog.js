@@ -10,7 +10,7 @@ function fileExists(filePath) {
 if (fileExists('/tmp/logs/error-log.txt')) {
   const log = await execute(`tail -n 20 "/tmp/logs/error-log.txt"`)
   if (!log) return bot.reply('log null')
-  bot.editMessageText(`<code>log</code>`, {
+  bot.editMessageText(`<code>${log}</code>`, {
       chat_id: chatId,
       message_id: messageId+1,
       parse_mode: "html",

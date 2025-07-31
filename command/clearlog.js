@@ -4,7 +4,7 @@ import path from 'node:path';
 
 export const cmds = ["clearlog"];
 export const exec = async (bot, msg, chatId, messageId) => {
-  const logDir = './logs';
+  const logDir = '/tmp/logs/';
   try {
     const files = await fs.readdir(logDir);
     await Promise.all(files.map(file => {

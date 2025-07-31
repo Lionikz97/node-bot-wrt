@@ -23,12 +23,12 @@ export const exec = async (bot, msg, chatId, messageId) => {
                     });
                 async function sen() {
                     try {
+                    const prox = await execute("cat proxy.yaml")
+                    bot.reply(`<code>${prox}</code>`)
                     await bot.sendDocument(chatId, './proxy.yaml', {
                         "reply_to_message_id": messageId
                     })
                     await execute('rm -rf proxy.yaml')
-                    await bot.reply('success');
-                    bot.deleteMessage(chatId, messageId+1)
                     } catch (e){
                         bot.reply(e)
                     }

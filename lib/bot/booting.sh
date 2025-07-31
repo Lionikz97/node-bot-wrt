@@ -13,8 +13,16 @@ messages=(
 )
 
 msg=${messages[$RANDOM % ${#messages[@]}]}
+mmsg="$*"
 
-curl -k -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
+if [[ -z "$mmsg" ]]; then
+    curl -k -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
      -d chat_id="$USERID" \
      -d parse_mode="html" \
      --data-urlencode text="$msg" &> /dev/null
+else
+    curl -k -s -X POST "https://api.telegram.org/bot$TOKEN/sendMessage" \
+     -d chat_id="$USERID" \
+     -d parse_mode="html" \
+     --data-urlencode text="$mmsg" &> /dev/null
+fi

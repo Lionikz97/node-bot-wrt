@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
 
 info='\e[46;30m'
 warn='\e[41;37m'
@@ -130,6 +129,7 @@ uninstall(){
     while :; do
         read -e -p "$(echo -e "$info Do you want to uninstall node-bot-wrt? [y/n]: $end")" q
         if [[ "$q" == "y" ]]; then
+            /etc/init.d/node-bot stop
             echo -e "$info Removing node-bot-wrt ... $end"
             rm -rf /root/node-bot-wrt /usr/bin/ht-api /usr/bin/mmsms /etc/init.d/node-bot
             break
@@ -145,11 +145,13 @@ uninstall(){
 upnode(){
     wget https://raw.githubusercontent.com/ahmadqsyaa/node-bot-wrt/master/install.sh -O /usr/bin/node-bot.bak && chmod +x /usr/bin/node-bot.bak
     echo -e "$success update node-bot script successfully $end"
+    /root/node-bot-wrt/lib/bot/booting.sh "update node-bot script successfully"
     rm -f /usr/bin/node-bot
     mv /usr/bin/node-bot.bak /usr/bin/node-bot
 }
 
 reinstall() {
+    /etc/init.d/node-bot stop
     echo -e "$warn Backing up configuration before reinstalling... $end"
     mkdir -p /tmp/bot-backup
     cp /root/node-bot-wrt/.env /tmp/bot-backup/.env.bak 2>/dev/null
@@ -165,6 +167,14 @@ reinstall() {
     fi
 
     echo -e "$success Reinstall complete with configuration restored! $end"
+    
+    /root/node-bot-wrt/lib/bot/booting.sh
+    /etc/init.d/node-bot enable
+    /etc/init.d/node-bot start
+
+    addCrontab "botcb" "*/2 * * * * /root/node-bot-wrt/lib/bot/cek-bot.sh"
+
+    /root/node-bot-wrt/lib/bot/booting.sh "reinstall node-bot-wrt successfully"
 }
 
 installSilent() {
@@ -186,11 +196,6 @@ installSilent() {
     cp lib/mmsms lib/ht-api /usr/bin/
     chmod +x /usr/bin/* /etc/init.d/node-bot lib/*/*.sh
 
-    /root/node-bot-wrt/lib/bot/booting.sh
-    /etc/init.d/node-bot enable
-    /etc/init.d/node-bot start
-
-    addCrontab "botcb" "*/2 * * * * /root/node-bot-wrt/lib/bot/cek-bot.sh"
 }
 
 install() {
@@ -240,6 +245,7 @@ install() {
 
     echo -e "$success Bot installed successfully! $end"
     echo -e "$info Join Telegram: https://t.me/infobot_wrt $end"
+    /root/node-bot-wrt/lib/bot/booting.sh "Join Telegram: https://t.me/infobot_wrt"
 }
 
 update(){
@@ -247,7 +253,12 @@ update(){
     [[ "$q" != "y" ]] && echo "Update canceled" && exit 0
 
     cd /root/node-bot-wrt || { echo -e "$warn Directory not found! $end"; exit 1; }
-
+    
+    mkdir -p /tmp/bot-backup
+    cp /root/node-bot-wrt/.env /tmp/bot-backup/.env.bak 2>/dev/null
+    
+    /etc/init.d/node-bot stop
+    
     git pull origin master || { echo -e "$warn Git update failed $end"; exit 1; }
     
     npm i
@@ -255,11 +266,15 @@ update(){
     cp etc/init.d/node-bot /etc/init.d/
     cp lib/mmsms lib/ht-api /usr/bin/
     chmod +x /usr/bin/* /etc/init.d/node-bot lib/*/*.sh
-
+    if [ -f /tmp/bot-backup/.env.bak ]; then
+        cp /tmp/bot-backup/.env.bak /root/node-bot-wrt/.env
+    fi
+    
     /etc/init.d/node-bot enable
     /etc/init.d/node-bot start
 
     echo -e "$success Update completed $end"
+    /root/node-bot-wrt/lib/bot/booting.sh "update node-bot-wrt successfully"
 }
 
 case "${1:-}" in
