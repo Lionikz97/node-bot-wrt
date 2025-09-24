@@ -78,7 +78,7 @@ try {
     
     const owner = userIds.some(id => id.trim() === chatId.toString());
     
-    const msgden = `<blockquote>USER: @${userName}\nID: ${chatId}\n⚠️ ACCESS DENIED ⚠️\n\nJika kamu owner dari bot ini, silahkan ganti USERID anda dengan mengetik diterminal node-bot -cc dan ketik 2 lalu masukkan userid anda <b>${chatId}</b> lalu restart service.</blockquote>`;
+    const msgden = `<blockquote>USER: @${userName}\nID: ${chatId}\n⚠️ ACCESS DENIED ⚠️\n\nJika kamu owner dari bot ini, silahkan ganti USERID anda dengan mengetik diterminal node-bot -cc dan ketik 2 lalu masukkan userid anda <b>${chatId}</b> lalu restart service\nnode-bot restart.</blockquote>`;
     if (!owner) return bot.sendMessage(chatId,msgden,{
         parse_mode: 'html',
     reply_to_message_id: messageId
@@ -90,10 +90,10 @@ try {
 		disable_web_page_preview: true
 	}
 	if (msg.body === '/restartbot'){
-	    await bot.sendMessage(chatId, 'successful restart bot, please wait about 10 seconds', {
+	    await bot.sendMessage(chatId, 'successful restart bot, please wait..', {
 	            reply_to_message_id: messageId
 	        })
-	    process.send('restart') 
+	    await process.send('restart') 
 	}
 	
     const caseMsg = await import('./lib/message.js');

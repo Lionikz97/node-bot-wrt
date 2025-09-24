@@ -1,7 +1,8 @@
 const now = new Date();
 export const cmds = ["time"];
 export const exec = (bot, msg, chatId, messageId) => {
-    const options = { 
+const now = new Date();
+const options = { 
     year: 'numeric', 
     month: '2-digit', 
     day: '2-digit', 

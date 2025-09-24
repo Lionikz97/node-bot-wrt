@@ -7,38 +7,32 @@ separator() {
 	echo -e "\033[36m─────────────────────────────────────────────\033[0m"
 }
 
-info() {
-	echo -e "\033[46;30m$1\033[0m"
-}
-
-warn() {
-	echo -e "\033[41;37m$1\033[0m"
-}
-
-success() {
-	echo -e "\033[42;30m$1\033[0m"
-}
+success='\e[46;30m[SUCCESS]\e[0m'
+warn='\e[41;37m[WARN]\e[0m'
+info='\e[42;30m[INFO]\e[0m'
 
 start() {
 	separator
 	pgrep -f /root/node-bot-wrt/index.js > /dev/null
 	if [ $? -eq 0 ]; then
-		warn "⚠️ bot already running, stopping first..."
+		echo -e "$warn ⚠️ bot already running, stopping first..."
 		kill $(pgrep -f /root/node-bot-wrt/index.js) >/dev/null 2>&1
 		sleep 2
 	fi
 	cd /root/node-bot-wrt && node /root/node-bot-wrt/index.js >/dev/null 2>&1 &
-	success "🚀 starting bot..."
+	echo -e "$info 🚀 starting bot..."
+	node-bot -cb >/dev/null 2>&1
 	separator
 	return 0
 }
 
 stop() {
 	separator
-	info "🛑 stopping bot..."
+	echo -e "$info stopping bot..."
 	sleep 2
 	kill $(pgrep -f /root/node-bot-wrt/index.js) >/dev/null 2>&1
-	success "✅ bot stopped"
+	echo -e "$success bot stopped"
+	node-bot -rcb >/dev/null 2>&1
 	separator
 }
 
@@ -50,11 +44,11 @@ restart(){
 
 boot() {
 	separator
-	info "⏳ booting bot (waiting 10 sec)..."
+	echo -e "$info ⏳ booting bot (waiting 10 sec)..."
 	sleep 10
 	/root/node-bot-wrt/lib/bot/booting.sh >/dev/null
 	(start >/dev/null 2>&1) &
-	success "✨ bot boot completed!"
+	echo -e "$success ✨ bot boot completed!"
 	separator
 	return 0
 }

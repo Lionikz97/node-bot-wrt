@@ -36,7 +36,7 @@ const start = () => {
 const restart= (child) => {
   child.kill();
   console.log('restarting child process in 10 seconds...');
-  setTimeout(() => execute('node-bot restart'), 10000);
+  setTimeout(() => start(), 10000);
 };
 
 start();
