@@ -201,7 +201,8 @@ print_disk() {
 
 chekupd(){
     LOCAL_VERSION=$(jq -r '.version' package.json 2>/dev/null)
-    REMOTE_VERSION=$(wget -qO- https://raw.githubusercontent.com/ahmadqsyaa/node-bot-wrt/master/package.json | jq -r '.version')
+    REMOTE_VERSION=$(wget -qO- https://raw.githubusercontent.com/Lionikz97 
+	/node-bot-wrt/master/package.json | jq -r '.version')
     if [ "$LOCAL_VERSION" = "$REMOTE_VERSION" ]; then
        echo -e "$info latest version"
     else
@@ -304,7 +305,7 @@ EOF
     if [ "$major" = "24" ] || [ "$major" = "25" ]; then
        echo -e "$success $ver [OK]"
     else
-       echo -e "$warn $ver version is too old, bey "
+       echo -e "$warn $ver version is too old, update laa!!! "
     exit 1
     fi
     sleep 2
