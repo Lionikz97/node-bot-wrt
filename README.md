@@ -31,7 +31,7 @@
 `1. copy and paste in terminal`
 
 ```bash
-wget https://raw.githubusercontent.com/ahmadqsyaa/node-bot-wrt/master/install.sh -O /usr/bin/node-bot && chmod +x /usr/bin/node-bot
+wget https://raw.githubusercontent.com/Lionikz97/node-bot-wrt/master/install.sh -O /usr/bin/node-bot && chmod +x /usr/bin/node-bot
 ```
 
 `2. installing bot`
@@ -49,12 +49,13 @@ opkg update && opkg install node-npm git git-http jq sysstat bash curl wget vnst
 
 `2. install node-bot`
 ```bash
-wget https://raw.githubusercontent.com/ahmadqsyaa/node-bot-wrt/master/install.sh -O /usr/bin/node-bot && chmod +x /usr/bin/node-bot
+wget https://raw.githubusercontent.com/Lionikz97
+/node-bot-wrt/master/install.sh -O /usr/bin/node-bot && chmod +x /usr/bin/node-bot
 ```
 
 `3. clone bot from github`
 ```bash
-cd ~ && git clone https://github.com/ahmadqsyaa/node-bot-wrt.git && cd node-bot-wrt
+cd ~ && git clone https://github.com/Lionikz97/node-bot-wrt.git && cd node-bot-wrt
 ```
 
 `4. create config token bot, userid etc.`
