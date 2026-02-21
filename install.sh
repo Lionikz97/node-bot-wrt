@@ -305,7 +305,7 @@ EOF
     if [ "$major" = "24" ] || [ "$major" = "25" ]; then
        echo -e "$success $ver [OK]"
     else
-       echo -e "$warn $ver version is too old, update laa!!! "
+       echo -e "$success $ver version is too old, update laa!!! "
     exit 1
     fi
     sleep 2
