@@ -296,17 +296,7 @@ EOF
             echo -e "$warn installation cancelled! "
         fi
         return
-    fi
-    sleep 1
-    echo -e "$info checking the os version"
-    sleep 2
-    ver=$(grep "DISTRIB_RELEASE" /etc/openwrt_release | cut -d"'" -f2)
-    major=$(echo "$ver" | cut -d. -f1)
-    if [ "$major" = "24" ] || [ "$major" = "25" ]; then
-       echo -e "$success $ver [OK]"
-    else
-       echo -e "$success $ver version is too old, update laa!!! "
-    exit 1
+     
     fi
     sleep 2
     print_disk
