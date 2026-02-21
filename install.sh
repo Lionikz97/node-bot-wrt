@@ -301,7 +301,7 @@ EOF
     sleep 2
     ver=$(grep "DISTRIB_RELEASE" /etc/openwrt_release | cut -d"'" -f2)
     major=$(echo "$ver" | cut -d. -f1)
-    if [ "$major" = "23" ] || [ "$major" = "24" ]; then
+    if [ "$major" = "23" ] || [ "$major" = "24" ] || [ "$major" = "25" ]; then
        echo -e "$success $ver [OK]"
     else
        echo -e "$warn $ver version is too old, bey "
