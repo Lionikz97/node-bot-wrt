@@ -216,7 +216,7 @@ chekupd(){
 }
 
 upnode(){
-    wget https://raw.githubusercontent.com/ahmadqsyaa/node-bot-wrt/master/install.sh -O /usr/bin/node-bot.bak && chmod +x /usr/bin/node-bot.bak
+    wget https://raw.githubusercontent.com/Lionikz97/node-bot-wrt/master/install.sh -O /usr/bin/node-bot.bak && chmod +x /usr/bin/node-bot.bak
     echo -e "$success update node-bot script successfully "
     /root/node-bot-wrt/lib/bot/booting.sh "update node-bot script successfully"
     rm -f /usr/bin/node-bot
@@ -253,7 +253,7 @@ reinstall() {
 
 installSilent() {
     cd ~
-    git clone https://github.com/ahmadqsyaa/node-bot-wrt.git
+    git clone https://github.com/Lionikz97/node-bot-wrt.git
     cd node-bot-wrt
 
     echo -e "$info installing NPM dependencies... "
@@ -301,7 +301,7 @@ EOF
     sleep 2
     ver=$(grep "DISTRIB_RELEASE" /etc/openwrt_release | cut -d"'" -f2)
     major=$(echo "$ver" | cut -d. -f1)
-    if [ "$major" = "23" ] || [ "$major" = "24" ] || [ "$major" = "25" ]; then
+    if [ "$major" = "24" ] || [ "$major" = "25" ]; then
        echo -e "$success $ver [OK]"
     else
        echo -e "$warn $ver version is too old, bey "
@@ -360,7 +360,7 @@ EOF
     
     cd ~
     echo -e "$info clonning bot"
-    if git clone https://github.com/ahmadqsyaa/node-bot-wrt.git; then
+    if git clone https://github.com/Lionikz97/node-bot-wrt.git; then
        echo -e "$success clone repository"
     else
        echo -e "$warn clone repository failed"
