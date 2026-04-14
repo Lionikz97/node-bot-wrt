@@ -16,7 +16,7 @@ export const exec = (bot, msg, chatId, messageId) => {
                     }
                 }
 
-                async function pingall(domains) {
+     async function pingall(domains) {
                     const results1 = await Promise.all(domains.map(ping));
                     return results1;
                 }
