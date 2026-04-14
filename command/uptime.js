@@ -9,15 +9,15 @@ export const exec = async (bot, msg, chatId, messageId) => {
     
     let result = '';
     if (days > 0) {
-        result += `${days} hari `;
+        result += `${days} days `;
     }
     if (hours > 0 || days > 0) {
-        result += `${hours} jam `;
+        result += `${hours} hours `;
     }
     if (minutes > 0 || hours > 0 || days > 0) {
-        result += `${minutes} minit `;
+        result += `${minutes} minutes `;
     }
-    result += `${seconds} saat`;
+    result += `${seconds} seconds`;
     
     return result.trim(); 
   };
