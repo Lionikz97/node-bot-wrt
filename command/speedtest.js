@@ -46,7 +46,7 @@ export const exec = async (bot, msg, chatId, messageId) => {
 
         if (data.type == "result") {
             const waktu = new Date(data.timestamp).toLocaleString('id-ID', {
-                timeZone: 'Asia/Jakarta',
+                timeZone: 'Asia/Kuala_Lumpur',
                 hour12: false
             });
 
@@ -84,7 +84,7 @@ export const exec = async (bot, msg, chatId, messageId) => {
 
             if (data.type == "result") {
                 const waktu = new Date(data.timestamp).toLocaleString('id-ID', {
-                    timeZone: 'Asia/Jakarta',
+                    timeZone: 'Asia/Kuala_Lumpur',
                     hour12: false
                 });
 
@@ -114,7 +114,7 @@ export const exec = async (bot, msg, chatId, messageId) => {
             }
         } catch (retryError) {
             
-            await bot.reply(`<blockquote>${retryError.message || retryError}\nUnfortunately sir, two attempts have still failed as well ☺️.</blockquote>`);
+            await bot.reply(`<blockquote>${retryError.message || retryError}\nUnfortunately sir, two attempts have still failed as well ☺️. I'm sorry!!!</blockquote>`);
         }
     }
 };
