@@ -15,9 +15,9 @@ export const exec = async (bot, msg, chatId, messageId) => {
         result += `${hours} jam `;
     }
     if (minutes > 0 || hours > 0 || days > 0) {
-        result += `${minutes} menit `;
+        result += `${minutes} minit `;
     }
-    result += `${seconds} detik`;
+    result += `${seconds} saat`;
     
     return result.trim(); 
   };
@@ -49,7 +49,7 @@ export const exec = async (bot, msg, chatId, messageId) => {
     const result = `
 🖥️ Uptime OS        : ${format(os)}
 🤖 Uptime Bot       : ${format(mainbot)}
-👨‍👦 Uptime Induk Bot : ${format(indukbot)}
+👨‍👦 Uptime Main Bot : ${format(indukbot)}
 `;
     await bot.reply(result);
 };
