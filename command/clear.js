@@ -19,7 +19,7 @@ export const exec = async (bot, msg, chatId, messageId) => {
 ╭───────────────────────────╮
 ├ free ram: ${format(res.ram_tersedia)}
 ├ before: ${format(res.sebelum)}
-├ after: ${format(res.selepas)}
+├ after: ${format(res.sesudah)}
 ├ remove: ${format(res.cache_yang_dihapus)}
 ╰───────────────────────────╯
 </blockquote>`
